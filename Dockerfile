@@ -1,5 +1,4 @@
-ARG IMAGE
-FROM ${IMAGE}
+FROM rundeckpro/runner
 
 USER root
 
