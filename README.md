@@ -16,7 +16,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
--   [`latest`](https://github.com/pagerduty-cse/pd-enterprise-runner/blob/main/Dockerfile)
+- [`latest`](https://github.com/pagerduty-cse/pd-enterprise-runner/blob/main/Dockerfile)
 
 # What's included
 
@@ -35,17 +35,41 @@ Environment variables for RD-CLI:
 
 ## Usage
 
+### Command line
+
 Starting a PagerDuty Enterprise Runner container is simple:
 ```
-$ docker run -dit --name ent-runner -e RUNNER_RUNDECK_SERVER_TOKEN=YOUR_RUNNER_SERVER_TOKEN -e RUNNER_RUNDECK_CLIENT_ID=YOUR_RUNNER_ID -e RUNNER_RUNDECK_SERVER_URL=YOUR_RUNDECK_SERVER_URL -e RD_URL=YOUR_RUNDECK_SERVER_URL -e RD_TOKEN=YOUR_RUNDECK_TOKEN pagerdutycs/pd-enterprise-runner:latest
+$ docker run -dit --name enterprise-runner \
+-e RUNNER_RUNDECK_SERVER_TOKEN=YOUR_RUNNER_SERVER_TOKEN \
+-e RUNNER_RUNDECK_CLIENT_ID=YOUR_RUNNER_ID \
+-e RUNNER_RUNDECK_SERVER_URL=YOUR_RUNDECK_SERVER_URL \
+-e RD_URL=YOUR_RUNDECK_SERVER_URL \
+-e RD_TOKEN=YOUR_RUNDECK_TOKEN pagerdutycs/pd-enterprise-runner:latest
 ```
+
+### Docker-compose
+
+```yaml
+version: "3"
+services:
+  enterprise-runner:
+    image: pagerdutycs/pd-enterprise-runner:latest
+    container_name: enterprise-runner
+    hostname: enterprise-runner
+    environment:
+      RUNNER_RUNDECK_SERVER_TOKEN: ${RUNNER_RUNDECK_SERVER_TOKEN}
+      RUNNER_RUNDECK_SERVER_URL: ${RUNNER_RUNDECK_SERVER_URL}
+      RUNNER_RUNDECK_CLIENT_ID: ${RUNNER_RUNDECK_CLIENT_ID}
+      RD_URL: ${RD_URL}
+      RD_TOKEN: ${RD_TOKEN}
+  ```
 
 To log into a bash shell of your container:
 ```
-$ docker exec -it ent-runner bash
+$ docker exec -it enterprise-runner bash
 ```
 
 To run RD-CLI commands from the host (this example shows the system information):
 ```
-$ docker exec -it ent-runner rd system info
+$ docker exec -it enterprise-runner rd system info
 ```
