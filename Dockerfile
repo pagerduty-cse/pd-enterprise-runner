@@ -1,4 +1,4 @@
-FROM rundeckpro/runner
+FROM rundeckpro/runner:latest
 
 USER root
 
