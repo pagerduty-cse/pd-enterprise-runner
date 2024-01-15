@@ -23,6 +23,7 @@
 - Java 11
 - Rundeck Enterprise Runner
 - RD-CLI
+- Python3 (kubernetes and yaml modules)
 
 # How to use this image
 
