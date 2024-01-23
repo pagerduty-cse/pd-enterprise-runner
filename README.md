@@ -14,9 +14,12 @@
 -	**Source of this description**:  
 	[GitHub repo's README](https://github.com/pagerduty-cse/pd-enterprise-runner/blob/main/README.md)
 
-# Supported tags and respective `Dockerfile` links
+# Supported tags
 
-- [`latest`](https://github.com/pagerduty-cse/pd-enterprise-runner/blob/main/Dockerfile)
+- `latest`
+- `5.0.0`
+- `0.1.53`
+- `0.1.52`
 
 # What's included
 
