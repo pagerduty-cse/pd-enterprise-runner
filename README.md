@@ -110,9 +110,9 @@ spec:
         - name: RUNNER_RUNDECK_SERVER_TOKEN
           value: ${RUNNER_RUNDECK_SERVER_TOKEN}
         - name: RUNNER_RUNDECK_SERVER_URL
-          value: $RUNNER_RUNDECK_SERVER_URL
+          value: ${RUNNER_RUNDECK_SERVER_URL}
         - name: RD_URL
           value: ${RD_URL}
         - name: RD_TOKEN
-          value: $RD_TOKEN
+          value: ${RD_TOKEN}
 ```
