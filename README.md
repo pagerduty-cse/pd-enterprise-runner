@@ -16,7 +16,6 @@
 
 # Supported tags
 
-- `latest`
 - `5.7.0`
 - `5.5.0`
 - `5.2.0`
