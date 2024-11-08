@@ -47,11 +47,11 @@ Environment variables for RD-CLI:
 Starting a PagerDuty Enterprise Runner container is simple:
 ```
 $ docker run -dit --name enterprise-runner \
--e RUNNER_RUNDECK_SERVER_TOKEN=YOUR_RUNNER_SERVER_TOKEN \
--e RUNNER_RUNDECK_CLIENT_ID=YOUR_RUNNER_ID \
--e RUNNER_RUNDECK_SERVER_URL=YOUR_RUNDECK_SERVER_URL \
--e RD_URL=YOUR_RUNDECK_SERVER_URL \
--e RD_TOKEN=YOUR_RUNDECK_TOKEN pagerdutycs/pd-enterprise-runner:latest
+-e RUNNER_RUNDECK_CLIENT_ID=$RUNNER_RUNDECK_CLIENT_ID \
+-e RUNNER_RUNDECK_SERVER_TOKEN=$RUNNER_RUNDECK_SERVER_TOKEN \
+-e RUNNER_RUNDECK_SERVER_URL=$RUNNER_RUNDECK_SERVER_URL \
+-e RD_URL=$RD_URL \
+-e RD_TOKEN=$RD_TOKEN pagerdutycs/pd-enterprise-runner:5.7.0
 ```
 
 ### Docker-compose
@@ -60,13 +60,13 @@ $ docker run -dit --name enterprise-runner \
 version: "3"
 services:
   enterprise-runner:
-    image: pagerdutycs/pd-enterprise-runner:latest
+    image: pagerdutycs/pd-enterprise-runner:5.7.0
     container_name: enterprise-runner
     hostname: enterprise-runner
     environment:
+      RUNNER_RUNDECK_CLIENT_ID: ${RUNNER_RUNDECK_CLIENT_ID}
       RUNNER_RUNDECK_SERVER_TOKEN: ${RUNNER_RUNDECK_SERVER_TOKEN}
       RUNNER_RUNDECK_SERVER_URL: ${RUNNER_RUNDECK_SERVER_URL}
-      RUNNER_RUNDECK_CLIENT_ID: ${RUNNER_RUNDECK_CLIENT_ID}
       RD_URL: ${RD_URL}
       RD_TOKEN: ${RD_TOKEN}
   ```
@@ -79,4 +79,40 @@ $ docker exec -it enterprise-runner bash
 To run RD-CLI commands from the host (this example shows the system information):
 ```
 $ docker exec -it enterprise-runner rd system info
+```
+
+### Kubernetes deployment
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enterprise-runner
+  labels:
+    app: enterprise-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enterprise-runner
+  template:
+    metadata:
+      labels:
+        app: enterprise-runner
+    spec:
+      containers:
+      - image: pagerdutycs/pd-enterprise-runner:5.7.0
+        imagePullPolicy: Always
+        name: enterprise-runner
+        env:
+        - name: RUNNER_RUNDECK_CLIENT_ID
+          value: ${RUNNER_RUNDECK_CLIENT_ID}
+        - name: RUNNER_RUNDECK_SERVER_TOKEN
+          value: ${RUNNER_RUNDECK_SERVER_TOKEN}
+        - name: RUNNER_RUNDECK_SERVER_URL
+          value: $RUNNER_RUNDECK_SERVER_URL
+        - name: RD_URL
+          value: ${RD_URL}
+        - name: RD_TOKEN
+          value: $RD_TOKEN
 ```
