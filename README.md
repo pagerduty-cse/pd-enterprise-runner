@@ -16,6 +16,7 @@
 
 # Supported tags
 
+- `5.12.0`
 - `5.11.1`
 - `5.11.0`
 - `5.9.0`
@@ -63,7 +64,7 @@ $ docker run -dit --name enterprise-runner \
 version: "3"
 services:
   enterprise-runner:
-    image: pagerdutycs/pd-enterprise-runner:5.7.0
+    image: pagerdutycs/pd-enterprise-runner:5.12.0
     container_name: enterprise-runner
     hostname: enterprise-runner
     environment:
@@ -104,7 +105,7 @@ spec:
         app: enterprise-runner
     spec:
       containers:
-      - image: pagerdutycs/pd-enterprise-runner:5.7.0
+      - image: pagerdutycs/pd-enterprise-runner:5.12.0
         imagePullPolicy: Always
         name: enterprise-runner
         env:
