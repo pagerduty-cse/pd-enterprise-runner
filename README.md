@@ -4,7 +4,6 @@
   Customer Success Engineering @ [PagerDuty](https://www.pagerduty.com/)
 
 - **Where to get help**:
-
   - For help with the Docker images please contact the Customer Success Engineering team at <cse@pagerduty.com>.
   - For help with Enterprise Runner visit the [Rundeck documentation](https://docs.rundeck.com/docs/administration/runner/#runner).
   - Rundeck CLI please check out the [Rundeck RD-CLI User Guide](https://docs.rundeck.com/docs/rd-cli/).
@@ -17,6 +16,7 @@
 
 # Supported tags
 
+- `5.19.0`
 - `5.18.0`
 - `5.17.0`
 - `5.16.0`
@@ -62,7 +62,7 @@ $ docker run -dit --name enterprise-runner \
 -e RUNNER_RUNDECK_SERVER_TOKEN=$RUNNER_RUNDECK_SERVER_TOKEN \
 -e RUNNER_RUNDECK_SERVER_URL=$RUNNER_RUNDECK_SERVER_URL \
 -e RD_URL=$RD_URL \
--e RD_TOKEN=$RD_TOKEN pagerdutycs/pd-enterprise-runner:5.18.0
+-e RD_TOKEN=$RD_TOKEN pagerdutycs/pd-enterprise-runner:5.19.0
 ```
 
 ### Docker-compose
@@ -71,7 +71,7 @@ $ docker run -dit --name enterprise-runner \
 version: "3"
 services:
   enterprise-runner:
-    image: pagerdutycs/pd-enterprise-runner:5.18.0
+    image: pagerdutycs/pd-enterprise-runner:5.19.0
     container_name: enterprise-runner
     hostname: enterprise-runner
     environment:
@@ -114,7 +114,7 @@ spec:
         app: enterprise-runner
     spec:
       containers:
-        - image: pagerdutycs/pd-enterprise-runner:5.18.0
+        - image: pagerdutycs/pd-enterprise-runner:5.19.0
           imagePullPolicy: Always
           name: enterprise-runner
           env:

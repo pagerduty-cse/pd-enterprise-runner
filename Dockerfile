@@ -1,4 +1,4 @@
-FROM rundeckpro/runner:5.18.0
+FROM rundeckpro/runner:5.19.0
 USER root
 
 #rd-cli
