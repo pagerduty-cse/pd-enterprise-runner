@@ -1,4 +1,4 @@
-FROM rundeckpro/runner:5.19-RBA-20260122-adc13ef-8e5597d
+FROM rundeckpro/runner:5.20.0
 USER root
 
 #rd-cli
@@ -9,6 +9,7 @@ RUN apt update && apt upgrade -y &&\
   apt install python3 python3-pip -y &&\
   pip install kubernetes &&\
   pip install pywinrm &&\
-  pip install pyyaml
+  pip install pyyaml &&\
+  pip install ansible
 RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && chmod +x kubectl && mv kubectl /usr/local/bin/
