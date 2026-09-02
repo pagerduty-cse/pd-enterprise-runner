@@ -16,6 +16,7 @@
 
 # Supported tags
 
+- `6.1.0`
 - `5.20.0`
 - `5.19.0`
 - `5.18.0`
@@ -64,7 +65,7 @@ $ docker run -dit --name enterprise-runner \
 -e RUNNER_RUNDECK_SERVER_TOKEN=$RUNNER_RUNDECK_SERVER_TOKEN \
 -e RUNNER_RUNDECK_SERVER_URL=$RUNNER_RUNDECK_SERVER_URL \
 -e RD_URL=$RD_URL \
--e RD_TOKEN=$RD_TOKEN pagerdutycs/pd-enterprise-runner:5.20.0
+-e RD_TOKEN=$RD_TOKEN pagerdutycs/pd-enterprise-runner:6.1.0
 ```
 
 ### Docker-compose
@@ -73,7 +74,7 @@ $ docker run -dit --name enterprise-runner \
 version: "3"
 services:
   enterprise-runner:
-    image: pagerdutycs/pd-enterprise-runner:5.20.0
+    image: pagerdutycs/pd-enterprise-runner:6.1.0
     container_name: enterprise-runner
     hostname: enterprise-runner
     environment:
@@ -116,7 +117,7 @@ spec:
         app: enterprise-runner
     spec:
       containers:
-        - image: pagerdutycs/pd-enterprise-runner:5.20.0
+        - image: pagerdutycs/pd-enterprise-runner:6.1.0
           imagePullPolicy: Always
           name: enterprise-runner
           env:
